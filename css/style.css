@@ -341,7 +341,7 @@ h2.active {
     z-index:5;
 }
 .slider__slide:nth-child(2) {
-    background-image: url("../grafika/Magic.jpg");
+    background-image: url("../grafika/magic.jpg");
     background-size: cover;
     background-repeat: round;
 }
