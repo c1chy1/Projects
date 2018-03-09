@@ -1,27 +1,5 @@
 
 
-
-
-
-
-
-
-$(document).ready(function() {
-    $(document).delegate('.button', 'click', function(event){
-        $(this).addClass('oppenned');
-        event.stopPropagation();
-    });
-    $(document).delegate('body', 'click', function(event) {
-        $('.button').removeClass('oppenned');
-    });
-    $(document).delegate('.cls', 'click', function(event){
-        $('.button').removeClass('oppenned');
-        event.stopPropagation();
-    });
-});
-
-
-
 var dots = 4;
 var sliderElem = document.querySelector('.slider');
 var dotElems = sliderElem.querySelectorAll('.slider__dot');
@@ -42,58 +20,6 @@ Array.prototype.forEach.call(dotElems, function (dotElem) {
         sliderElem.setAttribute('data-pos', newPos);
     });
 });
-
-$(document).ready(function() {
-    var animation = false,
-        animDur = 1000,
-        $row = $('.box__row'),
-        $cell = $('.box__row-cell'),
-        $content = $('.box__content'),
-        $closeBtn = $('.box__close');
-
-    var animFalse = function() {
-        animation = false;
-    };
-
-    var active = function() {
-        if (animation) return;
-        var cellData = $(this).data('cell');
-        var $content = $('.box__content[data-content=' + cellData + ']');
-        animation = true;
-
-        $cell.addClass('cell-fade');
-        $(this).addClass('active');
-        $content.addClass('show-content');
-        $closeBtn.addClass('box-close-active');
-
-        setTimeout(animFalse, animDur);
-    };
-
-    var close = function() {
-        animation = true;
-
-        $cell.removeClass('active cell-fade');
-        $content.removeClass('show-content');
-        $(this).removeClass('box-close-active');
-
-        setTimeout(animFalse, animDur);
-    };
-
-    $row.on('click', '.box__row-cell', active);
-    $closeBtn.on('click', close);
-    $cell.on({
-        mouseenter: function() {
-            $cell.addClass('hover-cell');
-            $(this).removeClass('hover-cell');
-        },
-        mouseleave: function() {
-            $cell.removeClass('hover-cell');
-        }
-    });
-});
-
-
-
 $(function() {
 
     $('a[href="#fantasy"]').click(function() {
@@ -116,13 +42,6 @@ $(function() {
         $("html,body").animate({scrollTop:$(document).height()}, 1000);
         e.preventDefault();
     });
-
-});
-
-
-
-$(document).ready(function() {
-
     // INITIATE THE FOOTER
     siteFooter();
     // COULD BE SIMPLIFIED FOR THIS PEN BUT I WANT TO MAKE IT AS EASY TO PUT INTO YOUR SITE AS POSSIBLE
@@ -150,7 +69,79 @@ $(document).ready(function() {
         });
 
     }
+    var animation = false,
+        animDur = 1000,
+        $row = $('.box__row'),
+        $cell = $('.box__row-cell'),
+        $content = $('.box__content'),
+        $closeBtn = $('.box__close');
+
+    var animFalse = function() {
+        animation = false;
+    };
+
+    var active = function() {
+        if (animation) return;
+        var cellData = $(this).data('cell');
+        var $content = $('.box__content[data-content=' + cellData + ']');
+        animation = true;
+
+        $cell.addClass('cell-fade');
+        $(this).addClass('active');
+        $content.addClass('show-content');
+        $closeBtn.addClass('box-close-active');
+
+        setTimeout(animFalse, animDur);
+    };
+    var close = function() {
+        animation = true;
+
+        $cell.removeClass('active cell-fade');
+        $content.removeClass('show-content');
+        $(this).removeClass('box-close-active');
+
+        setTimeout(animFalse, animDur);
+    };
+
+    $row.on('click', '.box__row-cell', active);
+    $closeBtn.on('click', close);
+    $cell.on({
+        mouseenter: function() {
+            $cell.addClass('hover-cell');
+            $(this).removeClass('hover-cell');
+        },
+        mouseleave: function() {
+            $cell.removeClass('hover-cell');
+        }
+    });
+
+    $(document).on('click', '.button', function(event){
+        $(this).addClass('oppenned');
+        event.stopPropagation();
+    });
+    $(document).on('click', 'body', function(event) {
+        $('.button').removeClass('oppenned');
+    });
+    $(document).on('click', '.cls', function(event){
+        $('.button').removeClass('oppenned');
+        event.stopPropagation();
+    });
+
+
+    $(document).ready(function () {
+        //initialize swiper when document ready
+        var mySwiper = new Swiper ('.swiper-container', {
+            // Optional parameters
+            direction: 'vertical',
+            loop: true
+        })
+    });
+
+
 });
+
+
+
 
 
 
